@@ -1,0 +1,91 @@
+// Custom.scss
+// Option A: Include all of Bootstrap
+
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/maps";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/utilities";
+
+// Include any default variable overrides here (though functions won't be available)
+// scss-docs-start gray-color-variables
+$white:    #fff;
+$gray-100: #d4d4d4;
+$gray-200: #bfbfbf;
+$gray-300: #a1a2a2;
+$gray-400: #8f9090;
+$gray-500: #737474;
+$gray-600: #696a6a;
+$gray-700: #525252;
+$gray-800: #3F4040;
+$gray-900: #303131;
+$black:    #000;
+// scss-docs-end gray-color-variables
+
+
+// fusv-disable
+// scss-docs-start gray-colors-map
+$grays: (
+  "100": $gray-100,
+  "200": $gray-200,
+  "300": $gray-300,
+  "400": $gray-400,
+  "500": $gray-500,
+  "600": $gray-600,
+  "700": $gray-700,
+  "800": $gray-800,
+  "900": $gray-900
+) !default;
+// scss-docs-end gray-colors-map
+// fusv-enable
+
+
+// scss-docs-start color-variables
+$primary: #0586C8;
+$blue:    red;
+$indigo:  #6610f2;
+$purple:  #6f42c1;
+$pink:    #d63384;
+$red:     #dc3545;
+$orange:  #fd7e14;
+$yellow:  #ffc107;
+$green:   #31B34A;
+$teal:    #20c997;
+$cyan:    #0dcaf0;
+$secondary: $gray-500;
+// scss-docs-end color-variables
+
+$all-colors: map-merge-multiple($blues, $indigos, $purples, $pinks, $reds, $oranges, $yellows, $greens, $teals, $cyans);
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "color": map-merge(
+      map-get($utilities, "color"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "color"), "values"),
+          (
+            $all-colors
+          ),
+        ),
+      ),
+    ),
+  )
+);
+
+@import "../node_modules/bootstrap/scss/utilities/api";
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Then add additional custom code here
+
+.heading {
+    @extend .border-bottom;
+    @extend .border-5;
+    @extend .border-primary;
+    @extend .fw-bolder;
+    @extend .text-primary;
+    @extend .my-4
+}
+
+
